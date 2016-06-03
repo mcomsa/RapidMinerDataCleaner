@@ -197,7 +197,7 @@
             <parameter key="invert_selection" value="true"/>
             <parameter key="include_special_attributes" value="false"/>
           </operator>
-          <operator activated="true" breakpoints="after" class="loop_attributes" compatibility="7.1.001" expanded="true" height="82" name="Loop Attributes (2)" width="90" x="313" y="34">
+          <operator activated="true" class="loop_attributes" compatibility="7.1.001" expanded="true" height="82" name="Loop Attributes (2)" width="90" x="313" y="34">
             <parameter key="attribute_filter_type" value="value_type"/>
             <parameter key="attribute" value="TimeSeriesWithError"/>
             <parameter key="attributes" value=""/>
@@ -227,7 +227,7 @@
                 <parameter key="invert_selection" value="false"/>
                 <parameter key="include_special_attributes" value="false"/>
               </operator>
-              <operator activated="true" class="subprocess" compatibility="7.1.001" expanded="true" height="103" name="Subprocess (3)" width="90" x="246" y="136">
+              <operator activated="true" class="subprocess" compatibility="7.1.001" expanded="true" height="103" name="Subprocess (3)" width="90" x="246" y="187">
                 <parameter key="parallelize_nested_process" value="false"/>
                 <process expanded="true">
                   <operator activated="true" class="generate_attributes" compatibility="7.1.001" expanded="true" height="82" name="Generate Attributes (2)" width="90" x="45" y="85">
@@ -325,7 +325,7 @@
                 </process>
                 <description align="center" color="transparent" colored="false" width="126">Get Number of Unparsable</description>
               </operator>
-              <operator activated="true" class="branch" compatibility="7.1.001" expanded="true" height="82" name="Handle Nominal (2)" width="90" x="447" y="187">
+              <operator activated="true" class="branch" compatibility="7.1.001" expanded="true" height="82" name="Handle Nominal (2)" width="90" x="447" y="238">
                 <parameter key="condition_type" value="expression"/>
                 <parameter key="expression" value="eval(%{fractionOfUnparsable})&gt;0.01 &amp;&amp; eval(%{fractionOfUnparsable})&lt; 0.75"/>
                 <parameter key="io_object" value="ANOVAMatrix"/>
@@ -455,16 +455,16 @@
               </operator>
               <connect from_port="example set" to_op="Select Attributes (2)" to_port="example set input"/>
               <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Subprocess (3)" to_port="in 1"/>
-              <connect from_op="Select Attributes (2)" from_port="original" to_op="Join" to_port="left"/>
+              <connect from_op="Select Attributes (2)" from_port="original" to_op="Join" to_port="right"/>
               <connect from_op="Subprocess (3)" from_port="out 2" to_op="Handle Nominal (2)" to_port="condition"/>
-              <connect from_op="Handle Nominal (2)" from_port="input 1" to_op="Join" to_port="right"/>
+              <connect from_op="Handle Nominal (2)" from_port="input 1" to_op="Join" to_port="left"/>
               <connect from_op="Join" from_port="join" to_port="example set"/>
               <portSpacing port="source_example set" spacing="0"/>
               <portSpacing port="sink_example set" spacing="0"/>
               <portSpacing port="sink_result 1" spacing="0"/>
             </process>
           </operator>
-          <operator activated="true" breakpoints="after" class="join" compatibility="7.1.001" expanded="true" height="82" name="Join (2)" width="90" x="514" y="136">
+          <operator activated="true" class="join" compatibility="7.1.001" expanded="true" height="82" name="Join (2)" width="90" x="514" y="136">
             <parameter key="remove_double_attributes" value="true"/>
             <parameter key="join_type" value="inner"/>
             <parameter key="use_id_attribute_as_key" value="true"/>
@@ -483,7 +483,7 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="7.1.001" expanded="true" height="82" name="Handle Missings" width="90" x="648" y="34">
+      <operator activated="true" class="subprocess" compatibility="7.1.001" expanded="true" height="82" name="Handle Missings" width="90" x="581" y="34">
         <parameter key="parallelize_nested_process" value="false"/>
         <process expanded="true">
           <operator activated="true" class="materialize_data" compatibility="7.1.001" expanded="true" height="82" name="Materialize Data" width="90" x="112" y="34">
